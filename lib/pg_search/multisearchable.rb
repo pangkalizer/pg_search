@@ -13,7 +13,7 @@ module PgSearch
 
       after_create do
         if PgSearch.multisearch_enabled?
-          create_pg_search_document {searchable: self}
+          create_pg_search_document {:searchable => self}
         end
       end
 
@@ -22,7 +22,7 @@ module PgSearch
     end
 
     def update_pg_search_document
-      create_pg_search_document({searchable: self}) unless self.pg_search_document
+      create_pg_search_document({:searchable => self}) unless self.pg_search_document
       self.pg_search_document.save
     end
   end
